@@ -1,5 +1,5 @@
-import "./App.css";
 import { useState } from "react";
+import styles from "./App.module.css";
 
 function App() {
   const NUMS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -8,7 +8,10 @@ function App() {
   const [operand1, setOperand1] = useState("");
   const [operand2, setOperand2] = useState("");
   const [operator, setOperator] = useState("");
+  const [isResult, setIsResult] = useState(false);
+
   const getValue = (event) => {
+    setIsResult(false);
     value = event.target.textContent;
     if (operator === "") {
       setOperand1((operand1Update) => operand1Update + value);
@@ -17,17 +20,25 @@ function App() {
     }
   };
   const getSubtraction = () => {
-    setOperator(operator + "-");
+    setIsResult(false);
+    if (operand1 != "") {
+      setOperator(operator + "-");
+    }
   };
   const getAddition = () => {
-    setOperator(operator + "+");
+    setIsResult(false);
+    if (operand1 != "") {
+      setOperator(operator + "+");
+    }
   };
-  const initialIalue = () => {
+  const initiallValue = () => {
+    setIsResult(false);
     setOperand1("");
     setOperand2("");
     setOperator("");
   };
   const getResult = () => {
+    setIsResult(true);
     if (operator === "+") {
       setOperand1(Number(operand1) + Number(operand2));
     } else if (operator === "-") {
@@ -37,24 +48,41 @@ function App() {
     setOperator("");
   };
   return (
-    <div className="App">
+    <div className={styles.container}>
       <div>
         <input
-          value={{ operand1 } + { operator } + { operand2 }}
+          className={
+            isResult
+              ? `${styles.output} ${styles.outputResult}`
+              : `${styles.output}`
+          }
+          value={operand1 + operator + operand2}
           type="text"
           defaultValue="0"
         ></input>
       </div>
       <div>
         {NUMS.map((item) => {
-          return <button onClick={getValue}>{item}</button>;
+          return (
+            <button className={styles.button} onClick={getValue}>
+              {item}
+            </button>
+          );
         })}
       </div>
       <div>
-        <button onClick={getSubtraction}>-</button>
-        <button onClick={initialIalue}>C</button>
-        <button onClick={getAddition}>+</button>
-        <button onClick={getResult}>=</button>
+        <button className={styles.buttonOperation} onClick={getSubtraction}>
+          -
+        </button>
+        <button className={styles.buttonOperation} onClick={initiallValue}>
+          C
+        </button>
+        <button className={styles.buttonOperation} onClick={getAddition}>
+          +
+        </button>
+        <button className={styles.buttonOperation} onClick={getResult}>
+          =
+        </button>
       </div>
     </div>
   );

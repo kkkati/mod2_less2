@@ -1,0 +1,32 @@
+.container {
+  width: 130px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+
+  text-align: center;
+  background: #edc7b7;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.output {
+  width: 98px;
+  margin-top: 10px;
+  margin-bottom: 1rem;
+}
+.outputResult {
+  color: #ac3b61;
+  font-weight: bold;
+}
+
+.button {
+  margin: 2px;
+  width: 2rem;
+}
+
+.buttonOperation {
+  margin: 2px;
+  width: 1.5rem;
+  margin-bottom: 10px;
+}

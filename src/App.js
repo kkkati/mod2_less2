@@ -21,13 +21,13 @@ function App() {
   };
   const getSubtraction = () => {
     setIsResult(false);
-    if (operand1 != "") {
+    if (operand1 != "" && operator == "") {
       setOperator(operator + "-");
     }
   };
   const getAddition = () => {
     setIsResult(false);
-    if (operand1 != "") {
+    if (operand1 != "" && operator == "") {
       setOperator(operator + "+");
     }
   };
